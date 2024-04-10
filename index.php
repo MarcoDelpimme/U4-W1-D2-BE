@@ -2,7 +2,7 @@
 
 <?php 
 
-echo '<pre>' . print_r($_POST, true) . '</pre>';
+//echo '<pre>' . print_r($_POST, true) . '</pre>';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $name=$_POST["username"];
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     if (strpos($password, "@" || "#") !==false)
-    {$errors["password"]="la password non puo contenere i caratter speciali ex:@, #";}
+    {$errors["password"]="la password non puo contenere i caratteri speciali ex:@, #";}
    
 
     if ($errors == []) {
@@ -35,24 +35,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Email form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+<style>
+    input {
+        width: 50%!important;
+        margin-inline: auto;
+    }
+    form{
+        border-radius: 35px;
+        background-color: lightgray;
+        margin-top: 20vh;
+        padding: 10%;
+
+    }
+</style>
+
 </head>
 <body>
 
-<div class="container mt-5 ">
-    <form action="" method="post" novalidate>
+<div class="container mt-5 text-center ">
+    <form action="" method="post" novalidate >
+        <H1 class="bg-info">LOG IN <br> FAKEBOOK</H1>
       <div class="mb-3">
       <div class="mb-3">
-        <label for="exampleInputUsername" class="form-label">Your username</label>
+        <label for="exampleInputUsername" class="form-label"><h4>Your username</h4></label>
         <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp">
-        <label for="exampleInputEmail1"  class="form-label">Email address</label>
-        <input type="email" name="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label for="exampleInputEmail1"  class="form-label mt-3"><h4>Email address</h4></label>
+        <input type="email" name="email" 
+        class="form-control <?= isset ($errors['email']) ? 'is-invalid' : ""  ?> " id="exampleInputEmail1" aria-describedby="emailHelp">
         <div class="error"><?= $errors["email"] ?? ""  ?></div>
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+       
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <label for="exampleInputPassword1" class="form-label"><h4>Password</h4></label>
         <input type="password" name="password" class="form-control <?= isset($errors['password']) ? 'is-invalid' : '' ?>" id="exampleInputPassword1">
         <div class="error"><?= $errors["password"] ?? ""  ?></div>
+        <div id="emailHelp" class="form-text">We'll never share your Password with anyone else.</div>
       </div>
     
     
